@@ -1,0 +1,25 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.CoffeeShop.HeaderControl">
+    <Grid Background="#F05A28">
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Image Source="../Assets/logo.png"
+                   Width="100"
+                   Margin="5" />
+            <TextBlock Text="Coffee Shop"
+                       Margin="10"
+                       FontSize="30"
+                       Foreground="White"
+                       VerticalAlignment="Center" />
+            <TextBlock Text="Version 1.0"
+                       Margin="10 0 0 22"
+                       FontSize="16"
+                       Foreground="#333333"
+                       VerticalAlignment="Bottom" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -3,5 +3,10 @@ global using Avalonia.CoffeeShop.ViewModels;
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;
 global using Avalonia.Controls;
-
+global using Avalonia;
+global using Avalonia.Markup.Xaml;
+global using Avalonia.CoffeeShop.Data;
+global using System.Collections.ObjectModel;
+global using Avalonia.Controls.ApplicationLifetimes;
+global using Avalonia.Data.Core.Plugins;
 namespace Avalonia.CoffeeShop;
