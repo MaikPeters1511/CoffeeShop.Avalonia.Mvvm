@@ -1,8 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using CommunityToolkit.Mvvm.ComponentModel;
-
-namespace Avalonia.CoffeeShop.ViewModels;
+﻿namespace Avalonia.CoffeeShop.ViewModels;
 
 public class ViewModelBase : INotifyPropertyChanged
 {
