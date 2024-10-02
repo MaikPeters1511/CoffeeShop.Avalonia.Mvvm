@@ -32,7 +32,7 @@ public partial class MainWindow : Window
 
     private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
     {
-       // ButtonAddCustomer.Content = "Customer Added";
+       ButtonAddCustomer.Content = "Customer Added";
     }
 
     private void OnToggleThemeClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
