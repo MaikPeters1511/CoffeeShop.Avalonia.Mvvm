@@ -43,7 +43,7 @@ public partial class MainWindow : Window
         }
         else
         {
-            Application.Current.RequestedThemeVariant = ThemeVariant.Light;
+            Application.Current!.RequestedThemeVariant = ThemeVariant.Light;
         }
     }
 }
