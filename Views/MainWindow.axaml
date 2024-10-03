@@ -12,12 +12,15 @@
         Title="Avalonia.CoffeeShop">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid x:Name="Root" ColumnDefinitions="Auto,*,Auto">
+    <Grid x:Name="Root">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -48,34 +51,41 @@
                         Background="Red"
                         Margin="10"
                         ToolTip.Tip="Kunde hinzufügen">
-                    <!-- Inhalt des Buttons: Bild -->
-                    <Image Source="{SvgImage /Assets/useradd.svg}" Width="25" Height="25"/>                </Button>
+                    <Image Source="{svg:SvgImage /Assets/useradd.svg}" Width="25" Height="25" />
+                </Button>
                 <Button x:Name="ButtonDeleteCustomer"
                         Background="Red"
                         Margin="0 10 10 10">
-                    <Image Source="{SvgImage /Assets/trash.svg}" Width="25" Height="25" />
+                    <Image Source="{svg:SvgImage /Assets/trash.svg}" Width="25" Height="25" />
                 </Button>
             </StackPanel>
+
+            <!-- ~1~ Customer List @1@ -->
+            <!-- <ListBox Grid.Row="1" -->
+            <!--          x:Name="CustomerListView" -->
+            <!--          Items="{Binding Customers}" -->
+            <!--          SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"> -->
+            <!--     <ListBox.ItemTemplate> -->
+            <!--         <DataTemplate> -->
+            <!--             <TextBox Text="{Binding FirstName, Mode=TwoWay}" /> -->
+            <!--         </DataTemplate> -->
+            <!--     </ListBox.ItemTemplate> -->
+            <!-- </ListBox> -->
         </Grid>
 
-        <!-- ~1~ Customer Details @1@ -->
-        <!-- <StackPanel Grid.Row="1" Grid.Column="1" -->
-        <!--             Margin="10" -->
-        <!--             Visibility="{x:Bind ViewModel.IsCustomerSelected, Mode=OneWay}"> -->
-        <!--     <TextBox Header="Firstname" -->
-        <!--              Text="{x:Bind ViewModel.SelectedCustomer.FirstName, -->
-        <!--              Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" /> -->
-        <!--     <TextBox Header="Lastname" -->
-        <!--              Margin="0 10 0 0" -->
-        <!--              Text="{x:Bind ViewModel.SelectedCustomer.LastName, -->
-        <!--              Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" /> -->
-        <!--     <CheckBox -->
-        <!--         IsChecked="{x:Bind ViewModel.SelectedCustomer.IsDeveloper, -->
-        <!--              Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
-        <!--         Margin="0 20 0 0"> -->
-        <!--         Is Developer -->
-        <!--     </CheckBox> -->
-        <!-- </StackPanel> -->
+        <!-- Customer Details -->
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    Margin="10"
+                    IsVisible="{Binding IsCustomerSelected}">
+            <TextBlock Text="Firstname" />
+            <TextBox Text="{Binding SelectedCustomer.FirstName, Mode=TwoWay}" />
+            <TextBlock Text="Lastname" Margin="0 10 0 0" />
+            <TextBox Text="{Binding SelectedCustomer.LastName, Mode=TwoWay}" />
+            <CheckBox IsChecked="{Binding SelectedCustomer.IsDeveloper, Mode=TwoWay}"
+                      Margin="0 20 0 0">
+                Is Developer
+            </CheckBox>
+        </StackPanel>
 
         <!-- StatusBar -->
         <Border Grid.Column="0"
@@ -101,5 +111,4 @@
             </Grid>
         </Border>
     </Grid>
-
 </Window>

@@ -2,9 +2,7 @@
 
 public class CustomerItemViewModel(Customer model) : ViewModelBase
 {
-    private readonly Customer _model = model;
-
-    public int Id => _model.Id;
+    private Customer _model = model;
 
     public string? FirstName
     {

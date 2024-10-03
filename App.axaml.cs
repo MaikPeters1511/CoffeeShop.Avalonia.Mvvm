@@ -25,10 +25,6 @@ public partial class App : Application
             // Without this line you will get duplicate validations from both Avalonia and CT
             BindingPlugins.DataValidators.RemoveAt(0);
             this.RequestedThemeVariant = ThemeVariant.Dark;
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = new MainWindowViewModel(new CustomerDataProvider()),
-            };
         }
 
         base.OnFrameworkInitializationCompleted();

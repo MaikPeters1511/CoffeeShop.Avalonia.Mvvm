@@ -1,4 +1,6 @@
-﻿namespace Avalonia.CoffeeShop.Data;
+﻿using Customer = Avalonia.CoffeeShop.Models.Customer;
+
+namespace Avalonia.CoffeeShop.Data;
 
 public class CustomerDataProvider : ICustomerDataProvider
 {
