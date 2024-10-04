@@ -2,6 +2,11 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
 using Avalonia.Threading;
+using Microsoft.Extensions.DependencyInjection;
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
+using Avalonia.CoffeeShop.ViewModels;
 
 namespace Avalonia.CoffeeShop.Views;
 
@@ -9,13 +14,22 @@ public partial class MainWindow : Window
 {
     private DispatcherTimer? _timer;
 
-    public MainWindow(MainWindowViewModel mainWindowViewModel)
+    public MainWindow()
     {
         InitializeComponent();
-        DataContext = mainWindowViewModel;
+        DataContext = (((App)Application.Current)).ServiceProvider.GetRequiredService<MainWindowViewModel>();
         StartClock();
+#if DEBUG
+        this.AttachDevTools();
+#endif
     }
 
+    private void InitializeComponent()
+    {
+        AvaloniaXamlLoader.Load(this);
+
+        // Manually set the DataContext
+    }
     private void StartClock()
     {
         _timer = new DispatcherTimer

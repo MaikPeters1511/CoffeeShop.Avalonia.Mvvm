@@ -1,57 +1,14 @@
-﻿namespace Avalonia.CoffeeShop.ViewModels;
-
-public class CustomerItemViewModel(Customer model) : ViewModelBase
+﻿namespace Avalonia.CoffeeShop.ViewModels
 {
-    private Customer _model = model;
+    public class CustomerItemViewModel : ViewModelBase
+    {
+        public Customer Customer { get; }
 
-    public int Id 
-    {
-        get => _model.Id;
-        set
+        public CustomerItemViewModel(Customer customer)
         {
-            if (_model.Id != value)
-            {
-                _model.Id = value;
-                OnPropertyChanged();
-            }
+            Customer = customer ?? throw new ArgumentNullException(nameof(customer));
         }
-    }
-    public string? FirstName
-    {
-        get => _model.FirstName;
-        set
-        {
-            if (_model.FirstName != value)
-            {
-                _model.FirstName = value;
-                OnPropertyChanged();
-            }
-        }
-    }
 
-    public string? LastName
-    {
-        get => _model.LastName;
-        set
-        {
-            if (_model.LastName != value)
-            {
-                _model.LastName = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-    public bool IsDeveloper
-    {
-        get => _model.IsDeveloper;
-        set
-        {
-            if (_model.IsDeveloper != value)
-            {
-                _model.IsDeveloper = value;
-                OnPropertyChanged();
-            }
-        }
+        public string? FirstName => Customer.FirstName;
     }
 }
