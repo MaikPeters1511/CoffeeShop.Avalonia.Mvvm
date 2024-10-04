@@ -1,32 +1,55 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
-using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using Avalonia.CoffeeShop.ViewModels;
 using Avalonia.CoffeeShop.Views;
-using Avalonia.Styling;
-using Avalonia.Threading;
+using Microsoft.Extensions.DependencyInjection;
+using Avalonia.Data.Core;
+using Avalonia.Data.Core.Plugins;
 
-namespace Avalonia.CoffeeShop;
-
-public partial class App : Application
+namespace Avalonia.CoffeeShop
 {
-    public override void Initialize()
+    public class App : Application
     {
-        AvaloniaXamlLoader.Load(this);
-    }
+        public IServiceProvider? ServiceProvider { get; private set; }
 
-    public override void OnFrameworkInitializationCompleted()
-    {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        public override void Initialize()
         {
-            // Line below is needed to remove Avalonia data validation.
-            // Without this line you will get duplicate validations from both Avalonia and CT
-            BindingPlugins.DataValidators.RemoveAt(0);
-            this.RequestedThemeVariant = ThemeVariant.Dark;
+            AvaloniaXamlLoader.Load(this);
         }
 
-        base.OnFrameworkInitializationCompleted();
+        public override void OnFrameworkInitializationCompleted()
+        {
+            ServiceProvider = ConfigureServices();
+
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                try
+                {
+                    var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+                    desktop.MainWindow = mainWindow;
+                }
+                catch (Exception ex)
+                {
+                    // Handle exceptions if the required service is not found
+                    Console.WriteLine("Error initializing MainWindow: " + ex.Message);
+                    throw;
+                }
+            }
+
+            base.OnFrameworkInitializationCompleted();
+        }
+
+        private IServiceProvider ConfigureServices()
+        {
+            var services = new ServiceCollection();
+
+            // Ensure RealCustomerDataProvider is defined and referenced correctly
+            services.AddTransient<ICustomerDataProvider, CustomerDataProvider>();
+            services.AddTransient<MainWindowViewModel>();
+            services.AddTransient<MainWindow>();
+
+            return services.BuildServiceProvider();
+        }
     }
 }

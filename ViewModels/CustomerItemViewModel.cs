@@ -4,6 +4,18 @@ public class CustomerItemViewModel(Customer model) : ViewModelBase
 {
     private Customer _model = model;
 
+    public int Id 
+    {
+        get => _model.Id;
+        set
+        {
+            if (_model.Id != value)
+            {
+                _model.Id = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     public string? FirstName
     {
         get => _model.FirstName;

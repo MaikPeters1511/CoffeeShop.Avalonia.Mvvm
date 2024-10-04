@@ -1,14 +1,16 @@
 ﻿namespace Avalonia.CoffeeShop.ViewModels;
 
-public sealed class MainWindowViewModel(
-    ICustomerDataProvider customerDataProvider,
-    CustomerItemViewModel? selectedCustomer = null) : ViewModelBase
+public sealed class MainWindowViewModel : ViewModelBase
 {
-    private readonly ICustomerDataProvider _customerDataProvider =
-        customerDataProvider ?? throw new ArgumentNullException(nameof(customerDataProvider));
+    private readonly ICustomerDataProvider _customerDataProvider;
+    private CustomerItemViewModel? _selectedCustomer;
 
-    private CustomerItemViewModel? _selectedCustomer = selectedCustomer;
-
+    public MainWindowViewModel(ICustomerDataProvider customerDataProvider,
+        CustomerItemViewModel? selectedCustomer = null)
+    {
+        _customerDataProvider = customerDataProvider ?? throw new ArgumentNullException(nameof(customerDataProvider));
+        _selectedCustomer = selectedCustomer;
+    }
 
     public CustomerItemViewModel? SelectedCustomer
     {
@@ -19,7 +21,6 @@ public sealed class MainWindowViewModel(
             {
                 _selectedCustomer = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(IsCustomerSelected));
             }
         }
     }

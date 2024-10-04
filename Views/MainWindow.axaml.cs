@@ -9,10 +9,10 @@ public partial class MainWindow : Window
 {
     private DispatcherTimer? _timer;
 
-    public MainWindow()
+    public MainWindow(MainWindowViewModel mainWindowViewModel)
     {
         InitializeComponent();
-        //DataContext =  MainWindowViewModel.Instance;
+        DataContext = mainWindowViewModel;
         StartClock();
     }
 
