@@ -48,7 +48,7 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center" />
                 <Button x:Name="ButtonAddCustomer"
-                        Click="ButtonAddCustomer_Click"
+                        Command="{Binding AddCommand}"
                         Background="Red"
                         Margin="10"
                         ToolTip.Tip="Kunde hinzufügen">
