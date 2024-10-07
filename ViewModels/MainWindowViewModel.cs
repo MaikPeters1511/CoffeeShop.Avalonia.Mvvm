@@ -12,9 +12,13 @@ public sealed class MainWindowViewModel : ViewModelBase
         Customers = new ObservableCollection<CustomerItemViewModel>();
         _ = LoadAsync();
         AddCommand = new DelecateCommand(AddCustomer);
+        DeleteCommand = new DelecateCommand(Delete, CanDelete);
     }
 
     public DelecateCommand AddCommand { get; }
+
+    public DelecateCommand DeleteCommand { get; }
+
     public CustomerItemViewModel? SelectedCustomer
     {
         get => _selectedCustomer;
@@ -24,11 +28,13 @@ public sealed class MainWindowViewModel : ViewModelBase
             {
                 _selectedCustomer = value;
                 OnPropertyChanged();
+                DeleteCommand.RaiseCanExecuteChanged();
             }
         }
     }
 
     public bool IsCustomerSelected => SelectedCustomer is not null;
+
     public ObservableCollection<CustomerItemViewModel> Customers { get; } = new();
 
     public async Task LoadAsync()
@@ -47,6 +53,7 @@ public sealed class MainWindowViewModel : ViewModelBase
             }
         }
     }
+
     private void AddCustomer(object? parameter)
     {
         var customer = new Customer {FirstName = "New"};
@@ -54,5 +61,18 @@ public sealed class MainWindowViewModel : ViewModelBase
         Customers.Add(viewModel);
         SelectedCustomer = viewModel;
     }
+
+    private void Delete(object? parameter)
+    {
+        if (SelectedCustomer is null)
+        {
+            return;
+        }
+
+        Customers.Remove(SelectedCustomer);
+        SelectedCustomer = null;
+    }
+
+    private bool CanDelete(object? parameter) => SelectedCustomer is not null;
 }
 
