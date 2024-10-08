@@ -17,6 +17,6 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
-        run: dotnet workload upgrade && dotnet tool install -g KuiperZone.PupNet
+        run: dotnet workload update && dotnet tool install -g KuiperZone.PupNet
       - name: Install PupNet
         run: pip3 install iscc-cli
