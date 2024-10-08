@@ -8,22 +8,22 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.1
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
         run: dotnet workload update && dotnet tool install -g KuiperZone.PupNet
       - name: Install PupNet
-        run: pip3 install iscc-cli
+        run: winget install JRSoftware.InnoSetup
       - name: Build
         run: pupnet -r win-x64 -k setup
       - name: Archive build output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.4.1
         with:
           name: build-output
           path: Deploy/OUT
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download build output
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.8
         with:
           name: build-output
           path: Deploy/OUT
