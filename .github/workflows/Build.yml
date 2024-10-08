@@ -19,7 +19,7 @@ jobs:
       - name: Download WinGet
         run: Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/download/v1.8.1911/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -OutFile "C:\Temp\WinGet.msixbundle"
       - name: Install WinGet
-        run: pwsh Add-AppxPackage "C:\Temp\WinGet.msixbundle"
+        run: pwsh -Command "Add-AppxPackage 'C:\Temp\WinGet.msixbundle'"
       - name: Restore dependencies
         run: dotnet workload update && dotnet tool install -g KuiperZone.PupNet
       - name: Install PupNet
