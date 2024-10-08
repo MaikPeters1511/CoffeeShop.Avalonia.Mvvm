@@ -65,7 +65,8 @@
                      ItemsSource="{Binding Customers , Mode=OneWay}"
                      SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
                      x:Name="CustomerListView"
-                     ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     ScrollViewer.AllowAutoHide="True">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding FirstName}" />
