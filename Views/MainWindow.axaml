@@ -69,7 +69,10 @@
                      ScrollViewer.AllowAutoHide="True">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding FirstName}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding FirstName, Mode=OneWay}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding LastName, Mode=OneWay}" Margin="5 0 0 0"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
