@@ -43,7 +43,7 @@ jobs:
                                   "frequency_penalty": 0,
                                   "presence_penalty": 0
                               }' | \
-          curl -X POST http://maiki.dns.army:1234/v1/ \
+          curl -X POST http://maiki.dns.army:1234/v1/chat/completions \
                -H "Content-Type: application/json" \
                -d @-)
           
