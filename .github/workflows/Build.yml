@@ -16,6 +16,10 @@ jobs:
         uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
+      - name: Download WinGet
+        run: Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/download/v1.8.1911/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -OutFile "C:\Temp\WinGet.msixbundle"
+      - name: Install WinGet
+        run: Add-AppxPackage "C:\Temp\WinGet.msixbundle"
       - name: Restore dependencies
         run: dotnet workload update && dotnet tool install -g KuiperZone.PupNet
       - name: Install PupNet
