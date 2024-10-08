@@ -10,7 +10,7 @@
         x:Class="Avalonia.CoffeeShop.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Avalonia.CoffeeShop">
+        Title="Avalonia CoffeeShop">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />
@@ -98,8 +98,8 @@
         <Border Grid.Column="0"
                 Grid.Row="2"
                 Grid.ColumnSpan="3"
-                Background="#444">
-            <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Background="#444">
+                Background="{DynamicResource BackgroundBrush}">
+            <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -107,12 +107,12 @@
                 <TextBlock Grid.Column="0" Text="(C) 2024 Coffee Shop"
                            Margin="5"
                            FontSize="16"
-                           Foreground="White"
+                           Foreground="{StaticResource ForegroundBrush}"
                            HorizontalAlignment="Left" />
                 <TextBlock x:Name="TimeBlock"
                            Margin="5"
                            FontSize="16"
-                           Foreground="White"
+                           Foreground="{StaticResource ForegroundBrush}"
                            Grid.Column="1"
                            HorizontalAlignment="Right" x:FieldModifier="public" />
             </Grid>
