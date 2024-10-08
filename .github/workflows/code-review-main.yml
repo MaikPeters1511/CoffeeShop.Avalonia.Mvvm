@@ -64,7 +64,7 @@ jobs:
             const commitSha = context.sha;
             let reviewMessage = process.env.REVIEW_MESSAGE;
             reviewMessage = reviewMessage.split('__NEWLINE__').join('\n');
-            await github.action_repository.createCommitComment({
+            await github.repos.createCommitComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               commit_sha: commitSha,
