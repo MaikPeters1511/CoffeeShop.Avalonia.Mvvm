@@ -5,7 +5,7 @@ public sealed class MainWindowViewModel : ViewModelBase
 {
     private readonly ICustomerDataProvider _customerDataProvider;
     private CustomerItemViewModel? _selectedCustomer;
-
+    private string _text;
     public MainWindowViewModel(ICustomerDataProvider customerDataProvider)
     {
         _customerDataProvider = customerDataProvider ?? throw new ArgumentNullException(nameof(customerDataProvider));
@@ -33,6 +33,24 @@ public sealed class MainWindowViewModel : ViewModelBase
         }
     }
 
+    public string Text
+    {
+        get => _text;
+        set
+        {
+            if (_text != value)
+            {
+                _text = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsTextEmpty));
+            }
+        }
+    }
+
+    public string Firstname => "Firstname";
+    public string Lastname => "Lastname";
+
+    public bool IsTextEmpty => string.IsNullOrEmpty(Text);
     public bool IsCustomerSelected => SelectedCustomer is not null;
 
     public ObservableCollection<CustomerItemViewModel> Customers { get; } = new();
