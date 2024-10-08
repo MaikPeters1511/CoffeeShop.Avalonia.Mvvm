@@ -17,7 +17,7 @@ jobs:
         id: openai_review
         run: |
           git fetch origin
-          CODE_DIFF=$(git diff HEAD~1 HEAD --unified=0)
+          CODE_DIFF=$(git diff HEAD~1 HEAD)
           ESCAPED_CONTENT=$(printf '%s' "$CODE_DIFF" | jq -Rs .)
           echo "ESCAPED_CONTENT: $ESCAPED_CONTENT"
           
