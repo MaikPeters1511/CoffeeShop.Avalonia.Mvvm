@@ -20,7 +20,8 @@ jobs:
         run: Invoke-WebRequest -Uri "https://files.innosetup.nl/innosetup-6.3.3.exe" -OutFile "C:\Temp\innosetup-6.3.3.exe"
       - name: Install Inno Setup
         run: Start-Process -FilePath "C:\Temp\innosetup-6.3.3.exe" -ArgumentList "/VERYSILENT" -Wait
-
+      - name: Install PupNet
+        run: dotnet tool install -g PupNet
       - name: Build
         run: pupnet -r win-x64 -k setup
       - name: Archive build output
