@@ -44,7 +44,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.0 # Passe die Version entsprechend an
+          tag_name: v1.0.0
           release_name: Release v1.0.0
           draft: false
           prerelease: false
