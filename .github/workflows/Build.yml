@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v4.4.1
         with:
           name: build-output
-          path: Deploy/Avalonia.CoffeeShop.exe
+          path: Deploy/Avalonia.CoffeeShop.x64.exe
 
   release:
     needs: build
@@ -39,7 +39,7 @@ jobs:
           name: build-output
           path: Deploy
       - name: Check if file exists
-        run: if [ ! -f Deploy\Avalonia.CoffeeShop.exe ]; then echo "File not found!"; exit 1; fi
+        run: if [ ! -f Deploy\Avalonia.CoffeeShop.x64.exe ]; then echo "File not found!"; exit 1; fi
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
@@ -56,6 +56,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Deploy\Avalonia.CoffeeShop.exe
-          asset_name: Avalonia.CoffeeShop.exe
+          asset_path: Deploy\Avalonia.CoffeeShop.x64.exe
+          asset_name: Avalonia.CoffeeShop.x64.exe
           asset_content_type: application/exe
