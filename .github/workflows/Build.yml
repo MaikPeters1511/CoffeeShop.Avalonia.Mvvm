@@ -54,6 +54,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Deploy/OUT
+          asset_path: Deploy/OUT/Avalonia.CoffeeShop.exe
           asset_name: Avalonia.CoffeeShop.exe
           asset_content_type: application/exe
