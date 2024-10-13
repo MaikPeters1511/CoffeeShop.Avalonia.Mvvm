@@ -44,7 +44,7 @@ jobs:
             Write-Error "File not found!"
             exit 1
           }
-      - name: Create GitHub Release
+      - name: Create GitHub
         id: create_release
         uses: actions/create-release@v1
         env:
