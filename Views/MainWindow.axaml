@@ -118,9 +118,10 @@
                 <TextBlock x:Name="TimeBlock"
                            Margin="5"
                            FontSize="16"
-                           Foreground="{StaticResource ForegroundBrush}"
+                           Foreground="White"
                            Grid.Column="1"
-                           HorizontalAlignment="Right" x:FieldModifier="public" />
+                           HorizontalAlignment="Right"
+                           x:FieldModifier="public" />
             </Grid>
         </Border>
     </Grid>

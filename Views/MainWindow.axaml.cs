@@ -13,6 +13,7 @@ namespace Avalonia.CoffeeShop.Views;
 public partial class MainWindow : Window
 {
     private DispatcherTimer? _timer;
+    private TextBlock? _timeBlock;
 
     public MainWindow()
     {
@@ -27,9 +28,9 @@ public partial class MainWindow : Window
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
-
-        // Manually set the DataContext
+        _timeBlock = this.FindControl<TextBlock>("TimeBlock");
     }
+
     private void StartClock()
     {
         _timer = new DispatcherTimer
@@ -42,7 +43,10 @@ public partial class MainWindow : Window
 
     private void Timer_Tick(object? sender, EventArgs e)
     {
-        TimeBlock.Text = DateTime.Now.ToString("HH:mm:ss");
+        if (_timeBlock != null)
+        {
+            _timeBlock.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
     }
 
     private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
